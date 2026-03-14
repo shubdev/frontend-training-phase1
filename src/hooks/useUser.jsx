@@ -12,6 +12,7 @@ export const useUser = () => {
   });
 };
 
+//create query for create users
 export const useCreateUser = () => {
   return useMutation({
     mutationFn: createUsers,
