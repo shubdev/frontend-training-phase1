@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import getUsers from "../service/userService.js";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { getUsers } from "../service/userService.js";
+import { createUsers } from "../service/userService.js";
 
 export const useUser = () => {
   //When the component loads useQuery calls the API
@@ -14,7 +15,13 @@ export const useUser = () => {
 
 //create query for create users
 export const useCreateUser = () => {
-  return useMutation({
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
     mutationFn: createUsers,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
   });
+  return mutation;
 };
