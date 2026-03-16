@@ -1,5 +1,4 @@
-import { useUser } from "./hooks/useUser";
-import { useCreateUser } from "./hooks/useUser";
+import { useUser, useCreateUser } from "./hooks/useUser";
 import { useState } from "react";
 
 function App() {
